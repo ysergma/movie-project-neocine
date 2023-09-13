@@ -57,3 +57,5 @@ In times of doubts remember these:
 - *`I've worked on 3 projects. They seemed difficult in the beginning but I still aced them. I'm awesome!`*
 - *`3 months ago, my biggest issues and worries are how to write the correct class name to change an HTML element's color. Now, I'm dealing with bigger things because I've learned so much more. My current worries and issues will be my HTML and CSS of my future.`*
 - *`I'm not alone on this team. There are 2 more people who got my back.`*
+
+
