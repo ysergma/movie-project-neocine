@@ -1,8 +1,9 @@
 import Head from "next/head"
 import Image from "next/image"
 import styles from "@/styles/Home.module.css"
-import Cards from "@/component/Card/Cards"
+import Cards from "../components/Cards"
 import { fetcher } from "../../util/API"
+import Moviescredits from "../components/Moviescredits"
 
 export default function Home({ latestMovie }) {
   return (
@@ -14,13 +15,13 @@ export default function Home({ latestMovie }) {
           </div>
         )
       })}
+      <Moviescredits />
     </>
   )
 }
 
 export async function getStaticProps() {
   const data = await fetcher("trending/movie/day?language=en-US")
-
   return {
     props: {
       latestMovie: data,
