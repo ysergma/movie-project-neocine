@@ -4,7 +4,7 @@ import Cards from "../components/Cards"
 
 const Tvcredits = ({ actor_id }) => {
   const [credits, setCredits] = useState([])
-  const apiRoute = `person/${actor_id}/tv_credits?language=en-US `
+  const apiRoute = `person/${actor_id}/tv_credits?language=en-US`
   const fetchCredits = async () => {
     const data = await fetcher(apiRoute)
     console.log(data.cast)
