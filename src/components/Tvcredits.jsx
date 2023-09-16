@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { fetcher } from "../../util/API"
-import Cards from "../components/Cards"
+import Cards from "./Cards"
 
 const Tvcredits = ({ actor_id }) => {
   const [credits, setCredits] = useState([])
