@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css"
 import Cards from "../components/Cards"
 import { fetcher } from "../../util/API"
 import Moviescredits from "../components/Moviescredits"
+import Tvcredits from "../components/Tvcredits"
 
 export default function Home({ latestMovie }) {
   return (
@@ -15,7 +16,7 @@ export default function Home({ latestMovie }) {
           </div>
         )
       })}
-      <Moviescredits />
+      <Tvcredits />
     </>
   )
 }
