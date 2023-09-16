@@ -1,4 +1,3 @@
-
 .overlay-container {
   position: absolute;
   width: 100%;
@@ -109,10 +108,10 @@ body {
   position: absolute;
   gap: 38vw;
   margin-left: 3.5%;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
