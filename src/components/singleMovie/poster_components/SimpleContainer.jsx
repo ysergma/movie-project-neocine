@@ -2,6 +2,8 @@ import * as React from "react"
 import BasicRating from "../BasicRating"
 import Buttons from "@/components/Buttons"
 import Image from "next/image"
+import styles from "@/styles/Single.module.css"
+import Container from "@/components/singleMovie/Container"
 
 export default function SimpleContainer({ movie, image, productionCompany }) {
   console.log(productionCompany)
@@ -13,6 +15,7 @@ export default function SimpleContainer({ movie, image, productionCompany }) {
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           borderRadius: 25,
+          height: "30rem",
         }}
       >
         <div className="parent">
@@ -24,10 +27,10 @@ export default function SimpleContainer({ movie, image, productionCompany }) {
             {movie.original_language}{" "}
           </div>
           <div className="grid-item poster">
-            <Image src={image} id="movie-image" alt="" />
+            <img src={image} alt="Actor Image" id="movie-image" />
           </div>
           <div className="grid-item">
-            <Buttons href="" btext="watch trailer">
+            <Buttons className="watch" href="#video" btext="watch trailer">
               {" "}
             </Buttons>
           </div>
@@ -39,7 +42,7 @@ export default function SimpleContainer({ movie, image, productionCompany }) {
                 <pre>
                   <span>{company.name}</span>{" "}
                 </pre>
-                <Image
+                <img
                   style={{ maxWidth: "20px" }}
                   src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
                   alt="logo"

@@ -53,6 +53,8 @@ body {
   /* Your existing styles for the container */
   background-color: #ccc;
   box-sizing: border-box;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .parent {
@@ -62,7 +64,11 @@ body {
   padding: 20px; /* Add padding for spacing */
   margin: 20px;
   background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 4%;
+  border-radius: 2%;
+}
+
+.parent p {
+  font-size: 20px;
 }
 
 /* Styling for the content grid item */
@@ -83,12 +89,12 @@ body {
 /* Additional styling for other grid items as needed */
 .trailer_actor_Container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   text-align: center;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  justify-content: center;
+  gap: 4%;
+
   border-radius: 5px;
 }
 
@@ -98,9 +104,10 @@ body {
 }
 
 iframe#video {
-  width: 900px;
+  width: 600px;
   height: 315px;
   border-radius: 5%;
+  margin-left: -20%;
 }
 
 .five_actors_container {
@@ -134,4 +141,49 @@ iframe#video {
   height: 140px; /* Adjust the image height as needed */
   object-fit: cover; /* Maintain aspect ratio */
   border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.actorsnamePic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  color: white;
+}
+
+.trailerTitle {
+  color: #f5c518;
+  margin-left: -90%;
+  padding-bottom: 5%;
+  margin-top: 7%;
+}
+.ActorsTitle {
+  color: #f5c518;
+  margin-left: 10%;
+  padding-bottom: 2%;
+  margin-top: 2%;
+}
+
+.cardContainer {
+  margin-left: 24%;
+  align-items: center;
+  color: #f5c518;
+  margin-top: 2%;
+}
+
+.bgBox {
+  width: 80vw;
+  height: 73vh;
+  border: 10px;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 60px;
+  background-color: #171515;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: -1;
+  margin-left: 11%;
+  margin-top: 10px;
 }
