@@ -5,26 +5,19 @@ import Stack from "@mui/material/Stack"
 
 export default function SizeAvatars({ array }) {
   return (
-    <>
-      <Stack direction="row" spacing={10}>
+    <div className="actorsnamePic">
+      <Stack direction="row" sx={{ gap: "4%" }} spacing={1}>
         {array.map((actor) => (
-          <Avatar
-            key={actor.id}
-            alt="Remy Sharp"
-            src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-            sx={{ width: 56, height: 56 }}
-          />
+          <div key={actor.id}>
+            <Avatar
+              alt={actor.name}
+              src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+              sx={{ width: 56, height: 56, margin: "20px" }}
+            />
+            <span>{actor.name}</span>
+          </div>
         ))}
       </Stack>
-      <div className="actorName">
-        {array.map((actor) => {
-          return (
-            <span key={actor.id} component="div">
-              {actor.name}
-            </span>
-          )
-        })}
-      </div>
-    </>
+    </div>
   )
 }

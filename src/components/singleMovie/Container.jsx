@@ -1,6 +1,8 @@
 import * as React from "react"
 import SizeAvatars from "@/components/singleMovie/actorAvatar"
 import Moviecards from "./similarMovies"
+import styles from "@/styles/Home.module.css"
+import CardsSlider from "@/components/CardsSlider"
 
 export default function TrailerActorContainer({
   relatedMovies,
@@ -8,17 +10,16 @@ export default function TrailerActorContainer({
   video,
 }) {
   const array1 = actors.cast.slice(0, 5)
-  const array2 = relatedMovies.slice(0, 5)
-  console.log(array2)
+  const array2 = relatedMovies.slice(0, 20)
+
   return (
     <>
+      <div className="bgBox"></div>
       <div className="trailer_actor_Container">
         <div>
-          <h2>Trailer:</h2>
+          <h2 className="trailerTitle">Trailer:</h2>
           <iframe
             id="video"
-            width="800"
-            height="315"
             src={`https://www.youtube.com/embed/${video.key}`}
             style={{ borderRadius: "5%" }}
             allowFullScreen
@@ -26,14 +27,15 @@ export default function TrailerActorContainer({
         </div>
 
         <div className="five_actors_container">
-          <h2>Actors:</h2>
+          <h2 className="ActorsTitle">Actors:</h2>
           <SizeAvatars className="actorCard" array={array1}></SizeAvatars>
         </div>
       </div>
 
       <div className="cardContainer">
         <h2>Similar:</h2>
-        <Moviecards className="actorCard" array={array2}></Moviecards>
+        {/* <Moviecards className="actorCard" array={array2}></Moviecards> */}
+        <CardsSlider className="MoviepageSlider" movies={array2} />
       </div>
     </>
   )
