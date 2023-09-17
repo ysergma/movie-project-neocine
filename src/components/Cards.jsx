@@ -5,28 +5,33 @@ import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
+import styles from "@/styles/cards.module.css"
 
-export default function Cards({ title, overview, poster_path }) {
+export default function Cards({ title, overview, poster_path, release_date }) {
   const images = `https://image.tmdb.org/t/p/original${poster_path}`
+
   return (
-    <Card sx={{ maxWidth: 180, background: "black" }}>
+    <Card className={styles.container}>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="140"
+        alt={title}
         image={images}
+        className={styles.imagesStyles}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
+      <CardContent className={styles.textStyles}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          className={styles.titleStyles}
+        >
+          <h4>{title}</h4>
+          <h6>{release_date}</h6>
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" className={styles.overviewStyles}>
           {overview}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   )
 }
