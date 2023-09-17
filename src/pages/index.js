@@ -5,13 +5,25 @@ import Cards from "../components/Cards"
 import { fetcher } from "../../util/API"
 import Moviescredits from "../components/Moviescredits"
 import Tvcredits from "../components/Tvcredits"
-import Movielists from "../components/Movielists"
+
+import Searchbar from "../components/Searchbar"
+import Navbar from "@/components/Navbar"
+import GernresList from "@/components/GenresList"
 
 export default function Home({ latestMovie }) {
   return (
-    <div>
-      <Movielists />
-    </div>
+    <>
+      {/* <GernresList movieGernresList={movieGernresList}/> */}
+      <Searchbar />
+      {latestMovie.results.map((movie, index) => {
+        return (
+          <div key={index}>
+            <Cards {...movie} />
+          </div>
+        )
+      })}
+      <Tvcredits />
+    </>
   )
 }
 
