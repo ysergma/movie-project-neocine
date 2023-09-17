@@ -1,49 +1,40 @@
 import * as React from "react"
-import { styled } from "@mui/material/styles"
-import Box from "@mui/material/Box"
-import Paper from "@mui/material/Paper"
-import Grid from "@mui/material/Grid"
 import SizeAvatars from "@/components/singleMovie/actorAvatar"
+import Moviecards from "./similarMovies"
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}))
-
-export default function Container({ movie, actors, video }) {
-  const array = actors.cast.slice(0, 5)
-  console.log(video.key)
-
+export default function TrailerActorContainer({
+  relatedMovies,
+  actors,
+  video,
+}) {
+  const array1 = actors.cast.slice(0, 5)
+  const array2 = relatedMovies.slice(0, 5)
+  console.log(array2)
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={6} md={8}>
-          <Item>
-            Watch trailer:{" "}
-            <iframe
-              width="420"
-              height="315"
-              src={`https://www.youtube.com/embed/${video.key}`}
-            ></iframe>
-          </Item>
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid item xs={6} md={8}>
-          <Item>
-            {" "}
-            <h2>Actors:</h2>
-            <SizeAvatars className="actorCard" array={array}></SizeAvatars>
-          </Item>
-        </Grid>
-      </Grid>
-    </Box>
+    <>
+      <div className="trailer_actor_Container">
+        <div>
+          <h2>Trailer:</h2>
+          <iframe
+            id="video"
+            width="800"
+            height="315"
+            src={`https://www.youtube.com/embed/${video.key}`}
+            style={{ borderRadius: "5%" }}
+            allowFullScreen
+          ></iframe>
+        </div>
+
+        <div className="five_actors_container">
+          <h2>Actors:</h2>
+          <SizeAvatars className="actorCard" array={array1}></SizeAvatars>
+        </div>
+      </div>
+
+      <div className="cardContainer">
+        <h2>Similar:</h2>
+        <Moviecards className="actorCard" array={array2}></Moviecards>
+      </div>
+    </>
   )
 }

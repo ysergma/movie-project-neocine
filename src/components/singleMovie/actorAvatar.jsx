@@ -2,7 +2,6 @@
 import * as React from "react"
 import Avatar from "@mui/material/Avatar"
 import Stack from "@mui/material/Stack"
-import Typography from "@mui/material/Typography"
 
 export default function SizeAvatars({ array }) {
   return (
@@ -20,9 +19,9 @@ export default function SizeAvatars({ array }) {
       <div className="actorName">
         {array.map((actor) => {
           return (
-            <Typography key={actor.id} component="div">
+            <span key={actor.id} component="div">
               {actor.name}
-            </Typography>
+            </span>
           )
         })}
       </div>
