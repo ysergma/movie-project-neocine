@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar"
 const Layout = ({ children }) => {
   const [genresMovie, setGenresMovie] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+  const [selectedGenreId, setSelectedGenreId] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,9 +32,18 @@ const Layout = ({ children }) => {
     }
   }
 
+  const handleGenreSelect = (genreId) => {
+    setSelectedGenreId(genreId)
+    console.log("genre id in the layout", genreId)
+  }
+
   return (
     <div>
-      <Navbar movieGenresList={genresMovie} onSearch={onSearch} />
+      <Navbar
+        movieGenresList={genresMovie}
+        onSearch={onSearch}
+        onGenreSelect={handleGenreSelect}
+      />
       {children(genresMovie, searchResults)}
     </div>
   )

@@ -5,7 +5,8 @@ import Link from "next/link"
 import styles from "../styles/movies.module.css"
 import SearchBar from "@/components/Searchbar"
 import { useState, useEffect } from "react"
-const Movies = ({ latestMovie }) => {
+
+const Movies = ({ latestMovie, selectedGenre }) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
@@ -17,7 +18,15 @@ const Movies = ({ latestMovie }) => {
   useEffect(() => {
     handleSearch(searchTerm)
   }, [searchTerm])
-  const moviesToDisplay = searchTerm ? searchResults : latestMovie.results
+  const moviesToDisplay = selectedGenre
+    ? latestMovie.results.filter((movie) =>
+        movie.genre_ids.includes(selectedGenre),
+      )
+    : searchTerm
+    ? searchResults
+    : latestMovie.results
+  console.log("this is selected genres", selectedGenre)
+
   return (
     <div className={styles.wrapper}>
       <SearchBar onSearch={setSearchTerm} />

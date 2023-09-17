@@ -11,7 +11,8 @@ import Image from "next/image"
 import GernresList from "./GenresList"
 import { MoviesList } from "./MoviesList"
 import Drawer from "@mui/material/Drawer"
-
+import GenresList from "./GenresList"
+import Link from "next/link"
 // search component
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,11 +65,26 @@ const DrawerWrapper = styled(Box)(({ theme }) => ({
   },
 }))
 
-export default function Navbar({ movieGenresList, movieslist, onSearch }) {
+export default function Navbar({
+  movieGenresList,
+  movieslist,
+  onSearch,
+  onGenreSelect,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [searchQuery, setSearchQuery] = React.useState("")
   const [searchResults, setSearchResults] = React.useState([])
   const [isDrawerOpen, setDrawerOpen] = React.useState(false)
+  const [selectedGenre, setSelectedGenre] = React.useState(null)
+
+  const handleGenreSelect = (genreId) => {
+    setSelectedGenre(genreId)
+    console.log("genre in navbar is ", genreId)
+
+    // to the layout component
+    onGenreSelect(genreId)
+  }
+
   const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
@@ -117,7 +133,11 @@ export default function Navbar({ movieGenresList, movieslist, onSearch }) {
           <div style={{ display: "flex", flex: "1", justifyContent: "center" }}>
             <HomeBtn />
 
-            <GernresList Genres={movieGenresList} tag={"Genres"} />
+            <GenresList
+              Genres={movieGenresList}
+              tag={"Genres"}
+              onGenreSelect={handleGenreSelect}
+            />
 
             <MoviesList />
 
@@ -217,38 +237,42 @@ const StyledMenu = styled((props) => (
 export function ActorsBtn() {
   return (
     <div>
-      <Button
-        variant="contained"
-        disableElevation
-        sx={{
-          background: "black",
-          "&:hover": {
-            backgroundColor: "#F5C518",
-            color: "white",
-          },
-        }}
-      >
-        Actors
-      </Button>
+      <Link href="/actor">
+        <Button
+          variant="contained"
+          disableElevation
+          sx={{
+            background: "black",
+            "&:hover": {
+              backgroundColor: "#F5C518",
+              color: "white",
+            },
+          }}
+        >
+          Actors
+        </Button>
+      </Link>
     </div>
   )
 }
 export function HomeBtn() {
   return (
     <div>
-      <Button
-        variant="contained"
-        disableElevation
-        sx={{
-          background: "black",
-          "&:hover": {
-            backgroundColor: "#F5C518",
-            color: "white",
-          },
-        }}
-      >
-        Home
-      </Button>
+      <Link href="/home">
+        <Button
+          variant="contained"
+          disableElevation
+          sx={{
+            background: "black",
+            "&:hover": {
+              backgroundColor: "#F5C518",
+              color: "white",
+            },
+          }}
+        >
+          home
+        </Button>
+      </Link>
     </div>
   )
 }
