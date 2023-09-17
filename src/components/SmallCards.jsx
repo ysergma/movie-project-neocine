@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import Skeleton from "@mui/material/Skeleton"
+import Rating from "@mui/material/Rating"
 
 function SmallCards({
   title,
@@ -36,12 +37,14 @@ function SmallCards({
               <Typography gutterBottom variant="body2">
                 {title}
               </Typography>
-              <Typography
-                display="block"
-                variant="caption"
-                color="text.secondary"
-              >
-                Vote : {vote_average} Date :{release_date}
+              <Typography display="block" variant="caption" color="white">
+                <Rating
+                  sx={{ color: "yellow", fontSize: "1.2rem" }}
+                  name="read-only"
+                  value={vote_average / 2}
+                  readOnly
+                />{" "}
+                {release_date}
               </Typography>
             </Box>
           </>

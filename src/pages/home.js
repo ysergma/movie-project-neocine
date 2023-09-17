@@ -12,48 +12,17 @@ export default function Home({ latestMovie }) {
 
   return (
     <>
-      <div class="container">
-        <div class="overlay-container">
-          <svg width="100%" height="100%" viewBox="0 0 1730 740">
-            <path
-              d="M-19 0.5H1732V788.5H-19V0.5Z"
-              fill="url(#paint0_linear_13_2461)"
-            />
-            <defs>
-              <linearGradient
-                id="paint0_linear_13_2461"
-                x1="674.538"
-                y1="918.999"
-                x2="667.631"
-                y2="97.4997"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop
-                  offset="0.270833"
-                  stop-color="#0D0C0F"
-                  stop-opacity="0.85"
-                />
-                <stop offset="0.46875" stop-color="#0D0C0F" stop-opacity="0" />
-                <stop
-                  offset="0.682292"
-                  stop-color="#0D0C0F"
-                  stop-opacity="0.284314"
-                />
-                <stop offset="1" stop-color="#0D0C0F" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div className={styles.test}>
-          <div>
-            <Slider movies={latestThreeMovies} />
-          </div>
+      <div className={styles.test}>
+        <div className={styles.titles}>
+          <Slider movies={latestThreeMovies} />
         </div>
 
-        <div>
+        <h1 className={styles.titles}>Latest Movies :</h1>
+        <div className={styles.smallSlider}>
           <CardsSlider movies={latestFiveMovies} />
         </div>
-        <div>
+        <h1 className={styles.titles}>Popular Movies :</h1>
+        <div className={styles.smallSlider}>
           <CardsSlider movies={latestFiveMovies} />
         </div>
       </div>
