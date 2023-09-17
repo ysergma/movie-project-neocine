@@ -1,47 +1,28 @@
-.overlay-container {
-  position: absolute;
-  width: 100%;
-  padding-bottom: calc(789 / 1728 * 100%);
-  z-index: 0;
-}
-
-.slider {
-  margin-top: 2%;
-  position: relative;
-  height: 600px;
-
-  z-index: -1;
-}
-
-.CardContent {
-  position: absolute;
-  color: rgb(248, 248, 248);
-  top: 300px;
-}
-
 body {
   background-color: #0d0c0f;
   margin: 0;
   padding: 0;
 }
 
-.sliderbutton {
-  position: absolute;
-  color: red;
-  top: 400px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.sliderarrows {
-  position: absolute;
-  gap: 43vw;
-  top: 230px;
-
-  background-color: transparent;
+.slider-container {
+  display: flex;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
 }
 
-.button {
-  background-color: white;
-  color: black;
+.smallSliderArrow {
+  background: #ec000000;
+  color: rgb(7, 0, 79);
+  margin-top: 4%;
+  position: absolute;
+  gap: 30vw;
+  margin-left: -6.5%;
 }
 
 .css-26w9jf-MuiMobileStepper-dot {
@@ -62,56 +43,95 @@ body {
   flex-shrink: 0;
   -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  font-size: 4.5rem;
+  font-size: 1.5rem;
   color: aliceblue;
 }
-
-.slider-container {
-  display: flex;
-  overflow: hidden;
-  transition: transform 0.5s ease-in-out;
-  margin-left: 15vw;
+.overlayindex {
+  z-index: 1;
 }
-
-.slider-row {
-  display: flex;
-}
-
-.slider-item {
-  flex: 0 0 calc(100% / 6);
-}
-
-.smallSliderArrow {
-  background-color: #5f0909;
-  color: rgba(0, 0, 0, 0.87);
-  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  box-shadow: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #ec000000;
-  color: rgb(7, 0, 79);
-  padding: 8px;
-  margin-top: 50px;
-  position: absolute;
-  gap: 38vw;
-  margin-left: 3.5%;
-}
-
-* {
-  margin: 0;
-  padding: 0;
+.simpleContainer {
+  /* Your existing styles for the container */
+  background-color: #ccc;
   box-sizing: border-box;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns with equal width */
+  gap: 10px; /* Adjust the gap between grid items as needed */
+  padding: 20px; /* Add padding for spacing */
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4%;
+}
+
+/* Styling for the content grid item */
+.grid-item.content {
+  grid-column: 1 / 3; /* Span two columns */
+  padding: 2%;
+}
+
+/* Styling for the poster grid item */
+.grid-item.poster {
+  grid-column: 3 / 4; /* Span one column */
+  text-align: center; /* Center the poster */
+}
+#movie-image {
+  border-radius: 5%;
+}
+
+/* Additional styling for other grid items as needed */
+.trailer_actor_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.trailer_actor_Container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+iframe#video {
+  width: 900px;
+  height: 315px;
+  border-radius: 5%;
+}
+
+.five_actors_container {
+  margin-top: 20px;
+}
+
+.moviecards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px; /* Adjust the spacing between cards */
+  padding: 20px; /* Optional padding for the container */
+}
+
+/* Styling for the individual Card component */
+.card {
+  width: 180px;
+  height: 300px; /* Fixed height for all cards */
+  background: gray;
+  /* Optional styling for the card */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Ensure content is stacked vertically */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/* Styling for the CardMedia image */
+.card img {
+  width: 100%;
+  height: 140px; /* Adjust the image height as needed */
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
 }

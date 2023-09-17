@@ -8,6 +8,7 @@ export default function BasicRating({ movie }) {
     <Box
       sx={{
         "& > legend": { mt: 2 },
+        display: "inline-block",
       }}
     >
       <Typography component="legend">|| {movie.runtime} min</Typography>

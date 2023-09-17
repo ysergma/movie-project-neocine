@@ -51,12 +51,12 @@ export default function CardsSlider({ movies }) {
         position="static"
         nextButton={
           <Button size="small" onClick={handleNext}>
-            <KeyboardArrowRight />
+            <KeyboardArrowRight sx={{ fontSize: "4rem", color: "white" }} />
           </Button>
         }
         backButton={
           <Button size="small" onClick={handleBack}>
-            <KeyboardArrowLeft />
+            <KeyboardArrowLeft sx={{ fontSize: "4rem", color: "white" }} />
           </Button>
         }
       />
