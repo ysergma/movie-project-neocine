@@ -5,6 +5,7 @@ import Cards from "../components/Cards"
 import { fetcher } from "../../util/API"
 import Moviescredits from "../components/Moviescredits"
 import Tvcredits from "../components/Tvcredits"
+
 import Searchbar from "../components/Searchbar"
 import Navbar from "@/components/Navbar"
 import GernresList from "@/components/GenresList"
