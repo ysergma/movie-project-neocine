@@ -48,7 +48,7 @@ const StyledMenu = styled((props) => (
   },
 }))
 
-export default function GenresList({ movieGernresList }) {
+export default function GenresList({ movieGenresList }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -88,8 +88,7 @@ export default function GenresList({ movieGernresList }) {
         open={open}
         onClose={handleClose}
       >
-        {movieGernresList.map((movie) => {
-          console.log(movie)
+        {movieGenresList.genres.map((movie) => {
           return (
             <MenuItem onClick={handleClose} key={movie.id} disableRipple>
               {movie.name}
