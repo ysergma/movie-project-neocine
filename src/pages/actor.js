@@ -8,9 +8,9 @@ import { useState, useEffect } from "react"
 const Movies = ({ latestMovie }) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
-
+  // search/person?query=1&include_adult=false&langua
   const handleSearch = async (searchTerm) => {
-    const apiRoute = `search/movie?query=${searchTerm}&include_adult=false&language=en-US`
+    const apiRoute = `search/person?query=${searchTerm}&include_adult=false&language=en-US`
     const data = await fetcher(apiRoute)
     setSearchResults(data.results)
   }
@@ -27,7 +27,7 @@ const Movies = ({ latestMovie }) => {
           return (
             <Grid key={movie.id} item md={3} className={styles.gridItem}>
               <Link href={`/${movie.id}`}>
-                <Cards {...movie} />
+                <Cards title={movie.name} poster_path={movie.profile_path} />
               </Link>
             </Grid>
           )
