@@ -9,6 +9,7 @@ import styles from "@/styles/Home.module.css"
 export default function Home({ latestMovie }) {
   const latestThreeMovies = latestMovie.results.slice(0, 3)
   const latestFiveMovies = latestMovie.results.slice(0, 60)
+
   return (
     <>
       <div class="container">
