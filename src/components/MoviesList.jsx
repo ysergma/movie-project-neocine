@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import { styled, alpha } from "@mui/material/styles"
 import Button from "@mui/material/Button"
 import Menu from "@mui/material/Menu"
@@ -9,6 +9,8 @@ import ArchiveIcon from "@mui/icons-material/Archive"
 import FileCopyIcon from "@mui/icons-material/FileCopy"
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
+import { Box } from "@mui/material"
+import { fetcher } from "../../util/API"
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -54,6 +56,19 @@ const StyledMenu = styled((props) => (
 }))
 
 export function MoviesList() {
+  const [movies, setMovies] = useState("")
+  const [selectedMovieList, setSelectedMovieList] = useState("top_rated")
+  const fetchMovies = async ({ moviestype }) => {
+    const apiRoute = `/movie/${moviestype}?language=en-US`
+    const data = await fetcher(apiRoute)
+    console.log(data.results)
+    setMovies(data.results)
+  }
+
+  useEffect(() => {
+    fetchMovies({ moviestype: selectedMovieList })
+  }, [selectedMovieList])
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -93,19 +108,16 @@ export function MoviesList() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          Top Rate
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => setSelectedMovieList("popular")}>
           Popular
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          Latest
+        <MenuItem onClick={() => setSelectedMovieList("top_rated")}>
+          Top Rated
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          Now playing
+        <MenuItem onClick={() => setSelectedMovieList("now_playing")}>
+          Now Playing
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => setSelectedMovieList("upcoming")}>
           Upcoming
         </MenuItem>
       </StyledMenu>
