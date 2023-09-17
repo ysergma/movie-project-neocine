@@ -7,20 +7,10 @@ import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import Button from "@mui/material/Button"
 import Menu from "@mui/material/Menu"
-import MenuItem from "@mui/material/MenuItem"
-import EditIcon from "@mui/icons-material/Edit"
-import Divider from "@mui/material/Divider"
-import ArchiveIcon from "@mui/icons-material/Archive"
-import FileCopyIcon from "@mui/icons-material/FileCopy"
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
-import IconButton from "@mui/material/IconButton"
-// import MenuIcon from "@mui/icons-material/Menu"
-import Typography from "@mui/material/Typography"
-// import Stack from "@mui/material/Stack"
 import Image from "next/image"
 import GernresList from "./GenresList"
 import { MoviesList } from "./MoviesList"
+import Drawer from "@mui/material/Drawer"
 
 // search component
 const Search = styled("div")(({ theme }) => ({
@@ -46,6 +36,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  fontSize: "1rem",
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -65,7 +56,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
-export default function Navbar({ movieGernresList }) {
+const DrawerWrapper = styled(Box)(({ theme }) => ({
+  width: "250px",
+  flexShrink: 0,
+  "& .MuiDrawer-paper": {
+    width: "250px",
+  },
+}))
+
+export default function Navbar({ movieGenresList, movieslist, onSearch }) {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [searchQuery, setSearchQuery] = React.useState("")
+  const [searchResults, setSearchResults] = React.useState([])
+  const [isDrawerOpen, setDrawerOpen] = React.useState(false)
+  const open = Boolean(anchorEl)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const handleSearch = async () => {
+    if (searchQuery.trim() === "") {
+      setSearchResults([])
+      return
+    }
+
+    const results = await onSearch(searchQuery)
+    setSearchResults(results)
+    setDrawerOpen(true)
+  }
+
+  const closeDrawer = () => {
+    setDrawerOpen(false)
+  }
+
   return (
     <Box>
       <AppBar
@@ -89,7 +117,7 @@ export default function Navbar({ movieGernresList }) {
           <div style={{ display: "flex", flex: "1", justifyContent: "center" }}>
             <HomeBtn />
 
-            <GernresList movieGernresList={movieGernresList} />
+            <GernresList Genres={movieGenresList} tag={"Genres"} />
 
             <MoviesList />
 
@@ -102,10 +130,43 @@ export default function Navbar({ movieGernresList }) {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch()
+                }
+              }}
             />
           </Search>
+
+          <StyledMenu
+            id="demo-customized-menu"
+            MenuListProps={{
+              "aria-labelledby": "demo-customized-button",
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          ></StyledMenu>
         </Toolbar>
       </AppBar>
+      <DrawerWrapper>
+        <Drawer anchor="right" open={isDrawerOpen} onClose={closeDrawer}>
+          <div
+            role="presentation"
+            onClick={closeDrawer}
+            onKeyDown={closeDrawer}
+          >
+            <h2>Search Results:</h2>
+            <ul>
+              {searchResults.map((result) => (
+                <li key={result.id}>{result.name}</li>
+              ))}
+            </ul>
+          </div>
+        </Drawer>
+      </DrawerWrapper>
     </Box>
   )
 }

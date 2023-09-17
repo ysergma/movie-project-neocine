@@ -94,8 +94,19 @@ export function MoviesList() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <EditIcon />
-          Edit
+          Top Rate
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          Popular
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          Latest
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          Now playing
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          Upcoming
         </MenuItem>
       </StyledMenu>
     </div>

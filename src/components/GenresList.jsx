@@ -48,7 +48,9 @@ const StyledMenu = styled((props) => (
   },
 }))
 
-export default function GenresList({ movieGenresList }) {
+
+export default function GenresList({ Genres, tag }) {
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -77,7 +79,7 @@ export default function GenresList({ movieGenresList }) {
           },
         }}
       >
-        Genres
+        {tag}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -88,13 +90,17 @@ export default function GenresList({ movieGenresList }) {
         open={open}
         onClose={handleClose}
       >
-        {movieGenresList.genres.map((movie) => {
-          return (
-            <MenuItem onClick={handleClose} key={movie.id} disableRipple>
-              {movie.name}
+
+        {Genres && Genres.genres ? (
+          Genres.genres.map((genre) => (
+            <MenuItem onClick={handleClose} key={genre.id} disableRipple>
+              {genre.name}
+
             </MenuItem>
-          )
-        })}
+          ))
+        ) : (
+          <MenuItem disabled>No genres available</MenuItem>
+        )}
       </StyledMenu>
     </div>
   )
