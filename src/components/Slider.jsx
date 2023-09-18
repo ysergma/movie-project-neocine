@@ -14,6 +14,7 @@ import Buttons from "@/components/Buttons"
 import "@/styles/slider.module.css"
 import { useState } from "react"
 import styles from "@/styles/Home.module.css"
+import Link from "next/link"
 
 export default function Slider({ movies }) {
   const theme = useTheme()
@@ -30,72 +31,77 @@ export default function Slider({ movies }) {
 
   return (
     <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
-      <Card sx={{ maxWidth: "100%", background: "transparent" }}>
-        <div className={styles.container}>
-          <div className={styles.overlaycontainer}>
-            <svg width="100%" height="100%" viewBox="0 0 1730 740">
-              <path
-                d="M-19 0.5H1732V788.5H-19V0.5Z"
-                fill="url(#paint0_linear_13_2461)"
-              />
-              <defs>
-                <linearGradient
-                  className={styles.overlayindex}
-                  id="paint0_linear_13_2461"
-                  x1="674.538"
-                  y1="818.999"
-                  x2="667.631"
-                  y2="37.4997"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop
-                    offset="0.270833"
-                    stop-color="#0D0C0F"
-                    stop-opacity="0.85"
+      {movies.map((movie) => (
+        <Link key={movie.id} href={`/${movie.id}`}>
+          <Card sx={{ maxWidth: "100%", background: "transparent" }}>
+            <div className={styles.container}>
+              <div className={styles.overlaycontainer}>
+                <svg width="100%" height="100%" viewBox="0 0 1730 740">
+                  <path
+                    d="M-19 0.5H1732V788.5H-19V0.5Z"
+                    fill="url(#paint0_linear_13_2461)"
                   />
-                  <stop
-                    offset="0.46875"
-                    stop-color="#0D0C0F"
-                    stop-opacity="0"
-                  />
-                  <stop
-                    offset="0.682292"
-                    stop-color="#0D0C0F"
-                    stop-opacity="0.284314"
-                  />
-                  <stop offset="1" stop-color="#0D0C0F" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <CardMedia
-            className={styles.slider}
-            component="img"
-            alt={movies[activeStep].title}
-            height="540"
-            image={`https://image.tmdb.org/t/p/original${movies[activeStep].backdrop_path}`}
-          />
-        </div>
-        <CardContent className={styles.CardContent}>
-          <Typography gutterBottom variant="h5" component="div">
-            {movies[activeStep].title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
-        </CardContent>
-        <CardActions className={styles.sliderbutton}>
-          <Buttons
-            btext={
-              <div>
-                <img src="/play.svg" style={{ marginTop: "10px" }} /> Continue
-                Watching
+                  <defs>
+                    <linearGradient
+                      className={styles.overlayindex}
+                      id="paint0_linear_13_2461"
+                      x1="674.538"
+                      y1="818.999"
+                      x2="667.631"
+                      y2="37.4997"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop
+                        offset="0.270833"
+                        stop-color="#0D0C0F"
+                        stop-opacity="0.85"
+                      />
+                      <stop
+                        offset="0.46875"
+                        stop-color="#0D0C0F"
+                        stop-opacity="0"
+                      />
+                      <stop
+                        offset="0.682292"
+                        stop-color="#0D0C0F"
+                        stop-opacity="0.284314"
+                      />
+                      <stop offset="1" stop-color="#0D0C0F" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
-            }
-          />
-          <Button className={styles.button} size="small">
-            Watchlist
-          </Button>
-        </CardActions>
-      </Card>
+              <CardMedia
+                className={styles.slider}
+                component="img"
+                alt={movies[activeStep].title}
+                height="540"
+                image={`https://image.tmdb.org/t/p/original${movies[activeStep].backdrop_path}`}
+              />
+            </div>
+            <CardContent className={styles.CardContent}>
+              <Typography gutterBottom variant="h5" component="div">
+                {movies[activeStep].title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary"></Typography>
+            </CardContent>
+            <CardActions className={styles.sliderbutton}>
+              <Buttons
+                btext={
+                  <div>
+                    <img src="/play.svg" style={{ marginTop: "10px" }} />{" "}
+                    Continue Watching
+                  </div>
+                }
+              />
+              <Button className={styles.button} size="small">
+                Watchlist
+              </Button>
+            </CardActions>
+          </Card>
+        </Link>
+      ))}
+
       <MobileStepper
         className={styles.sliderarrows}
         position="static"

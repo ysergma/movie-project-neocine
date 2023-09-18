@@ -5,7 +5,7 @@ import { fetcher } from "../../util/API"
 import Slider from "@/components/Slider"
 import CardsSlider from "@/components/CardsSlider"
 import styles from "@/styles/Home.module.css"
-
+import Link from "next/link"
 export default function Home({ latestMovie }) {
   const latestThreeMovies = latestMovie.results.slice(0, 3)
   const latestFiveMovies = latestMovie.results.slice(0, 60)
