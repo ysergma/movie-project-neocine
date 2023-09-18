@@ -34,7 +34,6 @@ export default function TrailerActorContainer({
 
       <div className="cardContainer">
         <h2>Similar:</h2>
-        {/* <Moviecards className="actorCard" array={array2}></Moviecards> */}
         <CardsSlider className="MoviepageSlider" movies={array2} />
       </div>
     </>
