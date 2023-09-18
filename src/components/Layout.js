@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetcher } from "../../util/API"
 import Navbar from "@/components/Navbar"
-import Footer from "./Footer"
+import Footer from "./Footer/Footer"
 
 const Layout = ({ children }) => {
   const [genresMovie, setGenresMovie] = useState(null)
