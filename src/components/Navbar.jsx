@@ -84,6 +84,12 @@ export default function Navbar({
   const [genresMovie, setGenresMovie] = useState(null)
   const router = useRouter()
 
+  const navigateToMovies = () => {
+    setTimeout(() => {
+      router.push("/movies")
+    }, 5000)
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetcher("genre/movie/list?language=en")
@@ -136,13 +142,15 @@ export default function Navbar({
       >
         <Toolbar>
           <div>
-            <Image
-              src="/../../logo.svg"
-              layout="responsive"
-              width={100}
-              height={100}
-              alt="NeoCine Logo"
-            />
+            <Link href="/">
+              <Image
+                src="/../../logo.svg"
+                layout="responsive"
+                width={100}
+                height={100}
+                alt="NeoCine Logo"
+              />
+            </Link>
           </div>
           <div style={{ display: "flex", flex: "1", justifyContent: "center" }}>
             <HomeBtn />
@@ -152,9 +160,9 @@ export default function Navbar({
               tag={"Genres"}
               onGenreSelect={handleGenreSelect}
             />
-            <Link href="/movies">
-              <MoviesList />
-            </Link>
+
+            <MoviesList />
+
             <ActorsBtn />
           </div>
           <Search>
