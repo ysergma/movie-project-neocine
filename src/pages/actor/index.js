@@ -27,7 +27,7 @@ const Actors = ({ latestactor }) => {
         {actorsToDisplay.map((actor) => {
           return (
             <Grid key={actor.id} item md={3} className={styles.gridItem}>
-              <Link href={`/actor/${actor.id}`}>
+              <Link href={`/${actor.id}`}>
                 <Cards
                   title={actor.name}
                   poster_path={actor.profile_path}
