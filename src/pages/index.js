@@ -12,6 +12,7 @@ import Searchbar from "../components/Searchbar"
 import Navbar from "@/components/Navbar"
 import GernresList from "@/components/GenresList"
 import Actor from "@/pages/ActorPage/[ActorId]"
+import ActorPage from "./actor/[actorId]"
 export default function Home({ latestMovie }) {
   return (
     <>

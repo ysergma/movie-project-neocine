@@ -36,7 +36,12 @@ const Movies = ({ latestMovie, selectedGenre }) => {
           return (
             <Grid key={movie.id} item md={3} className={styles.gridItem}>
               <Link href={`/${movie.id}`}>
-                <Cards {...movie} />
+                <Cards
+                  title={movie.title}
+                  overview={movie.overview}
+                  poster_path={movie.poster_path}
+                  release_date={movie.release_date}
+                />
               </Link>
             </Grid>
           )
