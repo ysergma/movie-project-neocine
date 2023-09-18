@@ -1,13 +1,8 @@
-import react from "react"
-import * as React from "react"
-import { GitHub } from "@mui/icons-material"
 import styles from "@/styles/footer.module.css"
-import { color, fontSize } from "@mui/system"
 const Footer = () => {
   return (
-    <div>
-      <div className={styles.container}>
-        <img />
+    <footer className={styles.footerContainer}>
+      <div>
         <h1>Video</h1>
         <h1>Video</h1>
         <h3>© luxi theme 2020</h3>
@@ -72,10 +67,9 @@ const Footer = () => {
           <a>Melissa Sidi Said</a>
         </h2>
 
-        <GitHub />
         <h1>Github Repo</h1>
       </div>
-    </div>
+    </footer>
   )
 }
 export default Footer
