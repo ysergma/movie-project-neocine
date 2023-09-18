@@ -14,6 +14,7 @@ import Buttons from "@/components/Buttons"
 import "@/styles/slider.module.css"
 import { useState } from "react"
 import styles from "@/styles/Home.module.css"
+import Link from "next/link"
 
 export default function Slider({ movies }) {
   const theme = useTheme()
@@ -26,6 +27,16 @@ export default function Slider({ movies }) {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
+  }
+  const linkStyle = {
+    textDecoration: "none",
+    color: "white",
+    transition: "color 0.3s, text-shadow 0.3s",
+  }
+
+  const hoverStyle = {
+    color: "#Fcff09",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
   }
 
   return (
@@ -77,9 +88,16 @@ export default function Slider({ movies }) {
           />
         </div>
         <CardContent className={styles.CardContent}>
-          <Typography gutterBottom variant="h5" component="div">
-            {movies[activeStep].title}
-          </Typography>
+          <Link
+            href={`/${movies[activeStep].id}`}
+            style={linkStyle}
+            onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
+            onMouseLeave={(e) => Object.assign(e.target.style, linkStyle)}
+          >
+            <Typography gutterBottom variant="h5" component="div">
+              {movies[activeStep].title}
+            </Typography>
+          </Link>
           <Typography variant="body2" color="text.secondary"></Typography>
         </CardContent>
         <CardActions className={styles.sliderbutton}>
