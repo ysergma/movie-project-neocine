@@ -26,7 +26,7 @@ const Movies = ({ latestMovie }) => {
         {moviesToDisplay.map((movie) => {
           return (
             <Grid key={movie.id} item md={3} className={styles.gridItem}>
-              <Link href={`/${movie.id}`}>
+              <Link href={`/actor/${movie.id}`}>
                 <Cards title={movie.name} poster_path={movie.profile_path} />
               </Link>
             </Grid>

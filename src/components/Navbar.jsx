@@ -16,6 +16,8 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { fetcher } from "../../util/API"
 import { useRouter } from "next/router"
+import Cards from "./Cards"
+import styles from "@/styles/navbarSearch.module.css"
 
 // search component
 const Search = styled("div")(({ theme }) => ({
@@ -112,7 +114,6 @@ export default function Navbar({
   const handleSearch = async () => {
     if (searchQuery.trim() === "") {
       setSearchResults([])
-      return
     }
 
     const results = await onSearch(searchQuery)
@@ -191,11 +192,28 @@ export default function Navbar({
             role="presentation"
             onClick={closeDrawer}
             onKeyDown={closeDrawer}
+            className={styles.drawerContainer}
           >
-            <h2>Search Results:</h2>
-            <ul>
+            <h2 className={styles.searchTitle}>Search Results:</h2>
+            <ul className={styles.movieListContainer}>
               {searchResults.map((result) => (
-                <li key={result.id}>{result.name}</li>
+                <>
+                  <li key={result.id} className={styles.movieItem}>
+                    <Link href={`/${result.id}`} className={styles.movieLink}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${result.poster_path}`}
+                        alt={result.title}
+                        className={styles.movieImage}
+                      />
+
+                      <p className={styles.movietitle}>{result.title}</p>
+
+                      <p className={styles.releaseDate}>
+                        {result.release_date}
+                      </p>
+                    </Link>
+                  </li>
+                </>
               ))}
             </ul>
           </div>
