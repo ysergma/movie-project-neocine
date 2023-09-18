@@ -48,7 +48,9 @@ const StyledMenu = styled((props) => (
   },
 }))
 
-export default function GenresList({ Genres, tag }) {
+
+export default function GenresList({ Genres, tag, onGenreSelect }) {
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -56,6 +58,11 @@ export default function GenresList({ Genres, tag }) {
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+  const handleGenreSelect = (genreId) => {
+    onGenreSelect(genreId)
+    console.log("genre id is ", genreId)
+    handleClose()
   }
 
   return (
@@ -90,7 +97,11 @@ export default function GenresList({ Genres, tag }) {
       >
         {Genres && Genres.genres ? (
           Genres.genres.map((genre) => (
-            <MenuItem onClick={handleClose} key={genre.id} disableRipple>
+            <MenuItem
+              onClick={() => handleGenreSelect(genre.id)}
+              key={genre.id}
+              disableRipple
+            >
               {genre.name}
             </MenuItem>
           ))

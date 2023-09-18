@@ -11,6 +11,11 @@ import Image from "next/image"
 import GernresList from "./GenresList"
 import { MoviesList } from "./MoviesList"
 import Drawer from "@mui/material/Drawer"
+import GenresList from "./GenresList"
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { fetcher } from "../../util/API"
+import { useRouter } from "next/router"
 
 // search component
 const Search = styled("div")(({ theme }) => ({
@@ -43,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
+
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -64,11 +69,36 @@ const DrawerWrapper = styled(Box)(({ theme }) => ({
   },
 }))
 
-export default function Navbar({ movieGenresList, movieslist, onSearch }) {
+export default function Navbar({
+  movieGenresList,
+  movieslist,
+  onSearch,
+  onGenreSelect,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [searchQuery, setSearchQuery] = React.useState("")
   const [searchResults, setSearchResults] = React.useState([])
   const [isDrawerOpen, setDrawerOpen] = React.useState(false)
+  const [selectedGenre, setSelectedGenre] = React.useState(null)
+  const [selectedGenreId, setSelectedGenreId] = useState(null)
+  const [genresMovie, setGenresMovie] = useState(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetcher("genre/movie/list?language=en")
+      setGenresMovie(response)
+    }
+
+    fetchData()
+  }, [])
+
+  const handleGenreSelect = (genreId) => {
+    setSelectedGenre(genreId)
+    router.push(`/movies?genre=${genreId}`)
+    console.log("genre in navbar is ", genreId)
+  }
+
   const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
@@ -117,10 +147,14 @@ export default function Navbar({ movieGenresList, movieslist, onSearch }) {
           <div style={{ display: "flex", flex: "1", justifyContent: "center" }}>
             <HomeBtn />
 
-            <GernresList Genres={movieGenresList} tag={"Genres"} />
-
-            <MoviesList />
-
+            <GenresList
+              Genres={genresMovie}
+              tag={"Genres"}
+              onGenreSelect={handleGenreSelect}
+            />
+            <Link href="/movies">
+              <MoviesList />
+            </Link>
             <ActorsBtn />
           </div>
           <Search>
@@ -217,38 +251,42 @@ const StyledMenu = styled((props) => (
 export function ActorsBtn() {
   return (
     <div>
-      <Button
-        variant="contained"
-        disableElevation
-        sx={{
-          background: "black",
-          "&:hover": {
-            backgroundColor: "#F5C518",
-            color: "white",
-          },
-        }}
-      >
-        Actors
-      </Button>
+      <Link href="/actor">
+        <Button
+          variant="contained"
+          disableElevation
+          sx={{
+            background: "black",
+            "&:hover": {
+              backgroundColor: "#F5C518",
+              color: "white",
+            },
+          }}
+        >
+          Actors
+        </Button>
+      </Link>
     </div>
   )
 }
 export function HomeBtn() {
   return (
     <div>
-      <Button
-        variant="contained"
-        disableElevation
-        sx={{
-          background: "black",
-          "&:hover": {
-            backgroundColor: "#F5C518",
-            color: "white",
-          },
-        }}
-      >
-        Home
-      </Button>
+      <Link href="/">
+        <Button
+          variant="contained"
+          disableElevation
+          sx={{
+            background: "black",
+            "&:hover": {
+              backgroundColor: "#F5C518",
+              color: "white",
+            },
+          }}
+        >
+          home
+        </Button>
+      </Link>
     </div>
   )
 }

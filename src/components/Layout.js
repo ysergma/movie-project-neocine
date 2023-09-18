@@ -5,15 +5,7 @@ import Navbar from "@/components/Navbar"
 const Layout = ({ children }) => {
   const [genresMovie, setGenresMovie] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetcher("genre/movie/list?language=en")
-      setGenresMovie(response)
-    }
-
-    fetchData()
-  }, [])
+  const [selectedGenreId, setSelectedGenreId] = useState(null)
 
   const onSearch = async (query) => {
     try {
@@ -22,7 +14,6 @@ const Layout = ({ children }) => {
       )
 
       if (response.results && Array.isArray(response.results)) {
-        // Assuming the API response contains an array of results
         return response.results
       }
     } catch (error) {
