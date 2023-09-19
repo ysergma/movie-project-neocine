@@ -63,7 +63,7 @@ export default function ActorPage({ actor, similar }) {
             className="cardContainer"
             style={{
               background: "#333",
-              marginLeft: "20%",
+              marginLeft: "10%",
             }}
           >
             <h2>Similar:</h2>

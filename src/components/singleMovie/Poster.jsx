@@ -8,7 +8,7 @@
 import * as React from "react"
 import SimpleContainer from "./poster_components/SimpleContainer"
 
-export default function Poster({ movie }) {
+export default function Poster({ movie, credits }) {
   const imageUrl = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
 
   return (
@@ -17,6 +17,7 @@ export default function Poster({ movie }) {
         productionCompany={movie.production_companies}
         movie={movie}
         image={imageUrl}
+        director={credits}
       ></SimpleContainer>
     </>
   )
