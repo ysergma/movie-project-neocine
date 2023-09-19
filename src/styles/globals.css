@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 * {
@@ -22,7 +23,7 @@ body {
   color: rgb(7, 0, 79);
   margin-top: 4%;
   position: absolute;
-  gap: 30vw;
+  gap: 35vw;
   margin-left: -6.5%;
 }
 
@@ -94,7 +95,6 @@ body {
   align-items: center;
   text-align: center;
   justify-content: center;
-  gap: 4%;
 
   border-radius: 5px;
 }
@@ -168,23 +168,23 @@ iframe#video {
 }
 
 .cardContainer {
-  margin-left: 24%;
+  margin-left: 15%;
   align-items: center;
   color: #f5c518;
   margin-top: 2%;
 }
 
 .bgBox {
-  width: 80vw;
-  height: 73vh;
+  width: 88%;
+  height: 99%;
   border: 10px;
-  padding: 10px;
+  padding: 4px;
   display: inline-block;
   border-radius: 60px;
   background-color: #171515;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   position: absolute;
   z-index: -1;
-  margin-left: 11%;
+  margin-left: 5%;
   margin-top: 10px;
 }

@@ -5,8 +5,16 @@ import Image from "next/image"
 import styles from "@/styles/Single.module.css"
 import Container from "@/components/singleMovie/Container"
 
-export default function SimpleContainer({ movie, image, productionCompany }) {
-  console.log(productionCompany)
+export default function SimpleContainer({
+  movie,
+  image,
+  productionCompany,
+  director,
+}) {
+  const direc = director.cast.find(
+    (member) => member.known_for_department === "Directing",
+  )
+
   return (
     <React.Fragment>
       <div
@@ -23,6 +31,12 @@ export default function SimpleContainer({ movie, image, productionCompany }) {
             <h1>{movie.title}</h1>
             <BasicRating movie={movie} />
             <p>{movie.overview}</p> <br />
+            <div>
+              {" "}
+              <h3>Director:</h3>
+              <p>{direc ? direc.name : "Not available"}</p>
+            </div>{" "}
+            <br />
             <b> Release date :</b> {movie.release_date} <br /> <b> language:</b>{" "}
             {movie.original_language}{" "}
           </div>
