@@ -5,7 +5,6 @@
 Description :
 Neocine is a movie and actor information website that allows users to explore the latest movies, popular actors, and more. It provides a user-friendly interface to browse through movie details, actor profiles, and related content. Neocine is powered by The Movie Database (TMDb) API to fetch real-time movie and actor data.
 
-
 Tools Used :
 
 Next.js
